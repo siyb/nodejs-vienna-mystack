@@ -31,7 +31,7 @@
 * Challenges of microservice design (actually: challenges we needed to tackle)
 * (Our) Solution
 
-# Stack
+# Part 1: Stack
 
 ## Stack - Databases - Redis
 
@@ -150,18 +150,34 @@
 * request - http client
 * cron - cron like functionality for node
 
-# Microservices
+# Part 2: Microservices
 
 ## Microservices - Motivation 1
 
 * I am only going to talk about rudimentary microservice challenges, not all of them
-* Why microservices:
-	* Scalability
+* Why microservices?
 
-## Microservices - Motivation 2
+## Microservices - Motivation 2 - Scalability 1
 
-![Scalability (source: http://microservices.io/articles/scalecube.html)](../DecomposingApplications.021.jpg)
+![Scalability (source: http://microservices.io/articles/scalecube.html)](../DecomposingApplications.jpg)
 
+## Microservices - Motivation 2 - Scalability 2
+
+* X
+	* Adding more nodes (i.e. starting multiple instances of you monolithic software) and using a load balancer to distribute requests
+	* Not specialized: we are duplicating everything, while we might only need a certain part of our software
+
+* Y
+	* Splitting up the software according to different aspects
+
+// TODO:MORE
+
+## Microservice - Motivation 3 - Flexibility
+
+* In theory, each microservice could ...
+	* ... be programmed using a different programming language
+	* ... use different databases
+* Microservices 
 
 ## Microservices - Challenges 1
 
