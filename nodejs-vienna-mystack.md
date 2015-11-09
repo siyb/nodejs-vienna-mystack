@@ -117,7 +117,7 @@
 	* Moquitto
 * Nice to play around with (and for testing) but does not handle heavy load unless a proper broker is used. Backend limitations apply!
 
-## Stack - node.js -  bull
+## Stack - node.js - bull
 
 * Job queue for node.js
 * Uses redis as backend
@@ -149,6 +149,12 @@
 * rimraf - rm -rf 
 * request - http client
 * cron - cron like functionality for node
+
+## Outlook
+
+* part two will offer detailed explanations on how our stack is used
+* we will cover some microservice fundamentals and some of the challenges that we faced
+* we will also cover some of the solutions that we implemented
 
 # Part 2: Microservices
 
@@ -199,20 +205,3 @@
 	* Rollbacks?
 	* Journal?
 * Internal vs. External API? Facades?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
