@@ -158,6 +158,13 @@
 
 # Part 2: Microservices
 
+## Microservices - Sources
+
+* Building Microservices 1st Edition - Sam Newman
+* wikipedia
+* martin flowler
+* microservices.io
+
 ## Microservices - Motivation 1
 
 * I am only going to talk about rudimentary microservice challenges, not all of them
@@ -165,8 +172,19 @@
 * Challenges
 * Some possible/attempted solutions to the presented challenges
 
+## Microservices - Introduction 1
 
-## Microservices - Motivation 2 - Scalability 1
+* What is microservice architecture?
+	* Microservice architecture is a specialization of SOA
+		* Explicit boundaries, autonomy of services, contracts between services, compatibility policy
+	* They are meant to be "small" (what constitutes small is up for debate, which metric should we use?)
+	* Microservices should be deployable independently
+		* No prerequisists (e.g. service X must run to be able to start service Y)
+		* Loose coupling, i.e. lax dependencies (this is especially hard to do in some cases, because somewhere, data has to come together)
+		* Automation is key (according to some people on the internet!)
+	
+
+## Microservices - Motivation 1 - Scalability 1
 
 ![Scalability (source: http://microservices.io/articles/scalecube.html)](../DecomposingApplications.jpg)
 
@@ -176,14 +194,13 @@
 	* Adding more nodes (i.e. starting multiple instances of you monolithic software) and using a load balancer to distribute requests
 	* Not specialized: we are duplicating everything, while we might only need a certain part of our software
 
-* Y - Functional Decomposition
+* Y - Functional Decomposition (this is the essence of microservices)
 	* Splitting up the software according to different aspects
 	* Services:
 		* Either take a single aspect, e.g. "converting profile pictures" (micro) ...
 		* or a group of aspects, e.g. "User Profile Management" (macro?)
 
-
-## Microservices - Motivation 2 - Scalability 3
+## Microservices - Motivation 3 - Scalability 3
 
 * Z - Data Partitioning (sharding)
 	* A bit like X axis scaling, each node runs the same copy of the software
@@ -191,67 +208,90 @@
 		* db context: rows of a table are distributed among multiple servers
 		* webservice context: a webservice only relies on a subset of data
 
-## Microservices - Motivation 3 - Flexibility 1
+## Microservices - Motivation 4 - Flexibility 1
 
 * In theory, each microservice could ...
 	* ... be programmed using a different programming language
-	* ... using different databases
-	* In practise, you may want to provide a stack of technologies, otherwise, software stack maintainance might become a problem (I found that when working with npm people sometimes violate semver spec)
+	* ... use a different database
+	* In practise, you may want to provide a stack of technologies, otherwise, software stack maintainance might become a problem (I found that when working with npm, some maintainers violate semver spec)
 
-## Microservices - Motivation 4 - Flexibility 2
+## Microservices - Motivation 5 - Flexibility 2
 
-* Since microservices are very small, thus, they can be replaced easily (in theory)
+* Microservices are very small, thus, they can be replaced easily (in theory)
 	* Throw code away if no one can maintain it (e.g. if someone decided to use an uncommon programming language)
-	* Trial and error deployment possible, deploy working version on failure
-	* What about database choices? Porting data may be problematic.
+	* Trial and error deployment possible, deploy working version on failure -> deploy often
+	* Try out new frameworks / libraries / programming languages with little risk
+		* What about database choices? Porting data may be problematic.
 * Bigger pool of possible developers
-	* Only if we are not sticking to one language!	
+	* Only if we are not sticking to one language!
 
 ## Microservices - Challenges 1
 
 * This section provides some insights on what to expect when starting your first microservice project
-* Answers to the issues discussed in this section are provided in the next section ;)
+	* Mostly questions
+	* I will point out which choices we made
 
-## Microservices - Challenges 2
+## Microservices - Challenges 2 - Where do we start?
 
 * Code decomposition vs. new project vs. microservice rewrite
 	* Split up an existing system gradually?
 	* Rewrite an existing project using microservice architecture?
 	* Start a new project using microservice architecture?
 
-* Does it make sense to plan ahead for microservice architecture, even if I don't want to adapt the architecture right away? How would I do that?
+* Does it make sense to plan ahead for microservice architecture, even if I don't want to adopt the architecture right away? How would I do that?
 
-## Microservices - Challenges 3
+## Microservices - Challenges 3 - Communication?
 
 * Long running tasks
 	* HTTP - Timeouts -> solutions: polling? long polling? Alternatives?
 	* burning question: sync vs. async, or hybrid?
-	* async:
+	* async (e.g. via a message queue):
 		* choreography vs. orchestration (SPOF)?
 		* multiple consumer problem?
 * Service Discovery
-	* Centralized, Dedicated (clustered) -> e.g. consul.io? or Decentralized?
+	* Centralized, Dedicated (clustered) -> e.g. consul.io?
+	* ... or Decentralized -> algorithm?
+* Internal vs. External API? Facades? Where to put up the facades?
 
-## Microservices - Challenges 4
+## Microservices - Challenges 4 - Error Handling / Configuration
 
 * Configuration Management
-	* Centralized, Decentralized
+	* Centralized, Decentralized?
 * Error Handling
-	* Local / Global / Both?
-	* Rollbacks?
-	* Journal?
+	* Local (service bound) / Global (for all services) / Both?
+	* Rollbacks, retries or quick failures?
+	* Reporting
+		* Journal?
 	* MOST IMPORTANT ASPECT OF MICROSERVICES!
-* Internal vs. External API? Facades?
 
-## Microservices - Challenges 5 - Pitfalls?
 
-* Additional complexity (more not less complexity): messaging protocols, network protocols, load balancing
+## Mircoservices - Challenges 5 - Nano Services
+
+* Service vs. library (Nano service anti pattern)
+* When to use a service rather than a library?
+* Some aspects of monolithic software architecture are hard to trasfer to microservices directly
+	* Mostly systems that are dependencies of large parts of your software
+	* Can cause copious amounts of overhead!
+	* e.g. User management, access restriction, resource management
+
+
+## Mircoservices - Challenges 6 - Automate and test all the things!
+
+* Automated testing is a must have!
+	* Integration tests are essential in order detect protocol misimplementations quickly
+* CI and CD are essential as well
+	* automated deployment with proper error reporting would be ideal
+
+## Microservices - Pitfalls / Lessons Learned 1
+
+* Additional complexity: messaging protocols, network protocols, load balancing, containers (single service per "host"?)
 	* ops...
 * Network latency / failures become a problem -> Error Handling?
+	* Also see: the fallacies of distributed computing
 * Testing becomes difficult, you need to mock other services or at least services communication (requests, replies)
 
-// for solutins
-* Automated testing, deployment is a must!
+## Microservices - Pitfalls / Lessons Learned 2
+
 
 
 
