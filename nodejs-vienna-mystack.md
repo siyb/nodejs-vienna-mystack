@@ -161,8 +161,8 @@
 ## Microservices - Sources
 
 * Building Microservices 1st Edition - Sam Newman
-* wikipedia
-* martin flowler
+* Wikipedia
+* Martin Flowler
 * microservices.io
 
 ## Microservices - Agenda
