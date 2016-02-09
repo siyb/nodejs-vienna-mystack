@@ -165,9 +165,10 @@
 * martin flowler
 * microservices.io
 
-## Microservices - Motivation 1
+## Microservices - Agenda
 
-* I am only going to talk about rudimentary microservice challenges, not all of them
+* Very small intro into microservices
+* Rudimentary microservice challenges
 * Why microservices?
 * Challenges
 * Some possible/attempted solutions to the presented challenges
@@ -176,13 +177,21 @@
 
 * What is microservice architecture?
 	* Microservice architecture is a specialization of SOA
-		* Explicit boundaries, autonomy of services, contracts between services, compatibility policy
+		* Explicit boundaries
+		* Autonomy of services
+		* Contracts between services
+		* Compatibility policy
 	* They are meant to be "small" (what constitutes small is up for debate, which metric should we use?)
-	* Microservices should be deployable independently
-		* No prerequisists (e.g. service X must run to be able to start service Y)
-		* Loose coupling, i.e. lax dependencies (this is especially hard to do in some cases, because somewhere, data has to come together)
-		* Automation is key (according to some people on the internet!)
-	
+		* LOC? - lines of code
+		* SOC? - seperation of concerns
+		* etc?
+
+## Microservices - Introduction 2
+
+* Microservices should be deployable independently
+	* No prerequisists (e.g. service X must run to be able to start service Y)
+	* Loose coupling, i.e. lax dependencies (this is especially hard to do in some cases, because somewhere, data has to come together)
+	* Automation is key (according to some people on the internet!)
 
 ## Microservices - Motivation 1 - Scalability 1
 
@@ -225,7 +234,7 @@
 * Bigger pool of possible developers
 	* Only if we are not sticking to one language!
 
-## Microservices - Challenges 1
+## Microservices - Challenges 1 - Overview
 
 * This section provides some insights on what to expect when starting your first microservice project
 	* Mostly questions
@@ -253,7 +262,7 @@
 	* ... or Decentralized -> algorithm?
 * Internal vs. External API? Facades? Where to put up the facades?
 
-## Microservices - Challenges 4 - Error Handling / Configuration
+## Microservices - Challenges 4 - Error Handling / Configuration?
 
 * Configuration Management
 	* Centralized, Decentralized?
@@ -263,7 +272,6 @@
 	* Reporting
 		* Journal?
 	* MOST IMPORTANT ASPECT OF MICROSERVICES!
-
 
 ## Mircoservices - Challenges 5 - Nano Services
 
@@ -292,6 +300,12 @@
 
 ## Microservices - Pitfalls / Lessons Learned 2
 
+* Testing, integration testing in particular is essential ...
+* ... so is error handling and reporting
+* CI and CD are essential
+* Don't waste too much time on fragmenting your services in the beginning, you can always split up a service if you feel that you need to ...
+* ... likewise, don't hesitate to merge functionality if it turns out that logic is too fragmented
+* A mix of sync and async is often required, since there are some tasks that take longer that you want an http call to be
 
 
 
